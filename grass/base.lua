@@ -9,7 +9,7 @@ local apiUrl = string.format("https://api.github.com/repos/%s/%s/contents/%s?ref
 
 local function downloadFile(url, filePath)
     local success, response = pcall(function()
-        return httpService:RequestAsync({
+        return request({
             Url = url,
             Method = "GET"
         })
@@ -46,7 +46,7 @@ end
 
 local function getGitHubFiles()
     local success, response = pcall(function()
-        return httpService:RequestAsync({
+        return request({
             Url = apiUrl,
             Method = "GET"
         })
@@ -70,7 +70,7 @@ local function getGitHubFiles()
             elseif item.type == "dir" then
                 local dirUrl = string.format("https://api.github.com/repos/%s/%s/contents/%s/%s?ref=%s", owner, repo, path, item.name, branch)
                 local dirSuccess, dirResponse = pcall(function()
-                    return httpService:RequestAsync({
+                    return request({
                         Url = dirUrl,
                         Method = "GET"
                     })
