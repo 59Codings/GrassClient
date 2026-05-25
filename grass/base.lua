@@ -107,6 +107,10 @@ local function verifyFiles(files)
 end
 
 local function syncFiles()
+    if isfolder("grass") then
+        return true
+    end
+    
     local files = getGitHubFiles()
     
     if #files == 0 then

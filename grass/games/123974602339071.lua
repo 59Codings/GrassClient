@@ -1,4 +1,4 @@
--- Compiled in 39ms
+-- Compiled in 38ms
 local grass = loadstring(readfile("grass/GrassLib.lua"))()
 
 local replicatedStorage = game:GetService("ReplicatedStorage")
