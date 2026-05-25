@@ -106,8 +106,10 @@ local function verifyFiles(files)
     return true
 end
 
-local function syncFiles()
-    if isfolder("grass") then
+local function syncFiles(config)
+    config = config or {}
+    
+    if not config.Factory and isfolder("grass") then
         return true
     end
     
@@ -136,16 +138,15 @@ local function loadPlaceScript()
     end
 end
 
-local function main()
-    if not syncFiles() then
+local function main(config)
+    if not syncFiles(config) then
         return
     end
     
     loadPlaceScript()
 end
 
-if runService:IsStudio() then
-    main()
-else
-    main()
+return function(config)
+    config = config or {}
+    main(config)
 end
